@@ -18,10 +18,10 @@
     <!-- dialog box -->
     <dialog id="add-subreddit">
         <div class="container">
-            <div class="row">
+            <div class="row p-2">
                 <label for="subreddit-input" class="form-label">Enter Subreddit name:</label>
-                <input type="text" name="subreddit-input" id="subreddit-input">
-                <button class="btn btn-danger" type="button">Add Subreddit</button>
+                <input type="text" name="subreddit-input" class="form-control my-3" id="subreddit-input">
+                <button id="subreddit-dialog-btn" class="btn btn-danger" type="button">Add Subreddit</button>
             </div>
         </div>
     </dialog>
@@ -34,7 +34,7 @@
             <!-- first results -->
             <div id="first" class="full-height border border-dark col">
                 <div class="controllers">
-                    <button class="btn btn-outline-danger mt-2 rounded-circle"><i class="fa-solid fa-plus"></i></button>
+                    <button id="first" class="btn btn-outline-danger mt-2 rounded-circle"><i class="fa-solid fa-plus"></i></button>
                     <div class="row hide">
                         <span class="col-10"></span>
                         <button class="btn col-2"><i class="fa-solid fa-ellipsis-vertical"></i></button>
@@ -46,7 +46,7 @@
             <!-- second results -->
             <div id="second" class="hide full-height border border-dark col">
                 <div class="controllers">
-                    <button class="btn btn-outline-danger mt-2 rounded-circle"><i class="fa-solid fa-plus"></i></button>
+                    <button id="second" class="btn btn-outline-danger mt-2 rounded-circle"><i class="fa-solid fa-plus"></i></button>
                     <div class="row hide">
                         <span class="col-10"></span>
                         <button class="btn col-2"><i class="fa-solid fa-ellipsis-vertical"></i></button>
@@ -58,7 +58,7 @@
             <!-- third results -->
             <div id="third" class="hide full-height border border-dark col">
                 <div class="controllers">
-                    <button class="btn btn-outline-danger mt-2 rounded-circle"><i class="fa-solid fa-plus"></i></button>
+                    <button id="third" class="btn btn-outline-danger mt-2 rounded-circle"><i class="fa-solid fa-plus"></i></button>
                     <div class="row hide">
                         <span class="col-10"></span>
                         <button class="btn col-2"><i class="fa-solid fa-ellipsis-vertical"></i></button>
