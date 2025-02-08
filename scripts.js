@@ -1,10 +1,11 @@
 let state = [
-  { id: 0, name: null, data: null, isDisplay: true },
-  { id: 1, name: null, data: null, isDisplay: false },
-  { id: 2, name: null, data: null, isDisplay: false },
+  { id: 0, name: null, data: null },
+  { id: 1, name: null, data: null },
+  { id: 2, name: null, data: null },
 ];
 let requestSenderId = null;
 let subredditInput = null;
+let pendingAction = null
 
 const btnDialogAll = document.querySelectorAll(".rounded-circle");
 const dialogAddSubreddit = document.querySelector("dialog");
@@ -13,6 +14,19 @@ const inputSubreddit = document.getElementById("subreddit-input");
 const firstDiv = document.getElementById("first");
 const SecondDiv = document.getElementById("second");
 const thirdDiv = document.getElementById("third");
+const dropdownItemAll = document.querySelectorAll(".dropdown-item");
+
+dropdownItemAll.forEach((btn) =>
+  btn.addEventListener("click", (e) => {
+    requestSenderId = e.target.parentElement.id
+    pendingAction = e.target.textContent
+    if (pendingAction === "Refresh"){
+        subredditInput = state[requestSenderId].name
+        fetchData()
+        showData()
+    }
+})
+);
 
 btnDialogAll.forEach((btn) =>
   btn.addEventListener("click", (e) => {
@@ -30,6 +44,7 @@ btnAddSubreddit.addEventListener("click", (e) => {
     fetchData();
   } else alert("input field cannot be empty");
 });
+
 
 function fetchData() {
   fetch(`https://www.reddit.com/r/${subredditInput}.json`)
@@ -52,6 +67,7 @@ function indexFinder(str) {
       return false;
   }
 }
+
 function divFinder(int) {
   switch (int) {
     case 0:
@@ -70,7 +86,6 @@ function saveData(data) {
   if (index !== false) {
     state[index].data = data.data.children;
     state[index].name = subredditInput;
-    state[index].isDisplay = true;
     showData();
   }
 }
@@ -88,10 +103,10 @@ function showData() {
       if (item.id < 2) {
         const nextDiv = divFinder(item.id + 1);
         if (nextDiv) {
-            nextDiv.classList.remove("hide");
-          }
+          nextDiv.classList.remove("hide");
+        }
       }
-      
+
       item.data.forEach((data) => {
         div.innerHTML += `
             <div class="container border-bottom border-dark">
